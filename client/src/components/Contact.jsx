@@ -1,34 +1,6 @@
-import React, { useState } from 'react';
-import { submitContact } from '../api';
+import React from 'react';
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [submitting, setSubmitting] = useState(false);
-  const [status, setStatus] = useState(null);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setSubmitting(true);
-    setStatus(null);
-    try {
-      await submitContact(form);
-      setStatus({ type: 'success', message: 'Message sent successfully. Thank you!' });
-      setForm({ name: '', email: '', message: '' });
-    } catch (err) {
-      setStatus({
-        type: 'error',
-        message: err.response?.data?.message || 'Something went wrong. Please try again.'
-      });
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
   return (
     <section id="contact" className="border-t border-slate-800/80 bg-slate-950">
       <div className="section-container py-12 md:py-16">
@@ -45,7 +17,7 @@ export default function Contact() {
               analytics workflows, I&apos;d be happy to connect.
             </p>
 
-            <div className="mt-4 flex gap-3 text-xs text-slate-300">
+            <div className="mt-6 flex gap-3 text-xs text-slate-300">
               <a
                 href="https://www.linkedin.com/in/bhavnishnanda/"
                 target="_blank"
@@ -67,68 +39,69 @@ export default function Contact() {
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="card-surface p-5 space-y-3">
-            <div className="flex gap-3">
-              <div className="flex-1">
-                <label className="block text-[11px] font-medium text-slate-300 mb-1">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  required
-                  value={form.name}
-                  onChange={handleChange}
-                  className="w-full rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2 text-xs text-slate-100 outline-none focus:border-primary-light"
-                  placeholder="Your name"
-                />
-              </div>
-              <div className="flex-1">
-                <label className="block text-[11px] font-medium text-slate-300 mb-1">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  value={form.email}
-                  onChange={handleChange}
-                  className="w-full rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2 text-xs text-slate-100 outline-none focus:border-primary-light"
-                  placeholder="you@example.com"
-                />
-              </div>
-            </div>
+          <div className="card-surface p-5 space-y-4">
             <div>
-              <label className="block text-[11px] font-medium text-slate-300 mb-1">
-                Message
-              </label>
-              <textarea
-                name="message"
-                required
-                rows={4}
-                value={form.message}
-                onChange={handleChange}
-                className="w-full rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2 text-xs text-slate-100 outline-none focus:border-primary-light resize-none"
-                placeholder="Briefly share what you’d like to discuss."
-              />
-            </div>
-            {status && (
-              <p
-                className={`text-[11px] ${
-                  status.type === 'success' ? 'text-emerald-400' : 'text-rose-400'
-                }`}
-              >
-                {status.message}
+              <h4 className="text-sm font-semibold text-slate-50 mb-3">
+                Get in Touch
+              </h4>
+              <p className="text-xs text-slate-300 mb-4">
+                Feel free to reach out directly via email. I typically respond within 24 hours.
               </p>
-            )}
-            <button
-              type="submit"
-              disabled={submitting}
-              className="mt-1 inline-flex w-full items-center justify-center rounded-full bg-primary px-4 py-2 text-xs font-semibold text-slate-50 shadow-soft transition hover:bg-primary-light disabled:opacity-60"
-            >
-              {submitting ? 'Sending...' : 'Send Message'}
-            </button>
-          </form>
+            </div>
+
+            <div className="space-y-3">
+              <div className="flex items-center gap-3">
+                <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center">
+                  <svg className="h-4 w-4 text-primary-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-[11px] font-medium text-slate-400">Email</p>
+                  <a 
+                    href="mailto:bhavnishnanda9933@gmail.com"
+                    className="text-xs text-primary-light hover:text-primary transition"
+                  >
+                    bhavnishnanda9933@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center">
+                  <svg className="h-4 w-4 text-primary-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-[11px] font-medium text-slate-400">Location</p>
+                  <p className="text-xs text-slate-300">Available for remote opportunities</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center">
+                  <svg className="h-4 w-4 text-primary-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-[11px] font-medium text-slate-400">Open to</p>
+                  <p className="text-xs text-slate-300">Full-time opportunities & collaborations</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-slate-700">
+              <a
+                href="mailto:bhavnishnanda9933@gmail.com"
+                className="inline-flex w-full items-center justify-center rounded-full bg-primary px-4 py-2 text-xs font-semibold text-slate-50 shadow-soft transition hover:bg-primary-light"
+              >
+                Send Email
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
