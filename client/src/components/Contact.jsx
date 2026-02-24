@@ -45,7 +45,7 @@ export default function Contact() {
                 Get in Touch
               </h4>
               <p className="text-xs text-slate-300 mb-4">
-                Feel free to reach out directly via email. I typically respond within 24 hours.
+                Feel free to reach out directly via email.
               </p>
             </div>
 
@@ -76,7 +76,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-[11px] font-medium text-slate-400">Location</p>
-                  <p className="text-xs text-slate-300">Available for remote opportunities</p>
+                  <p className="text-xs text-slate-300">Available for remote and WFH  opportunities</p>
                 </div>
               </div>
 
