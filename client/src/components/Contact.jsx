@@ -76,7 +76,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-[11px] font-medium text-slate-400">Location</p>
-                  <p className="text-xs text-slate-300">Available for remote and WFH  opportunities</p>
+                  <p className="text-xs text-slate-300">Available for remote and on-site  opportunities</p>
                 </div>
               </div>
 
